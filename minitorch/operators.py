@@ -92,7 +92,3 @@ def sum(ls: Iterable[float]) -> float:
 def prod(ls: Iterable[float]) -> float:
     return reduce(mul, 1.0)(ls)
 
-def prod(ls: Iterable[float]) -> float:
-    "Product of a list using `reduce` and `mul`."
-    # TODO: Implement for Task 0.3.
-    raise NotImplementedError("Need to implement for Task 0.3")
