@@ -111,7 +111,7 @@ class Module:
         return self.forward(*args, **kwargs)
 
     def _repr_(self) -> str:
-        def addindent(s: str, numSpaces: int) -> str:
+        def _addindent(s: str, numSpaces: int) -> str:
             s2 = s_.split("\n")
             if len(s2) == 1:
                 return s_
