@@ -129,7 +129,7 @@ class Module:
             child_lines.append("(" + key + "): " + mod_str)
         lines = child_lines
 
-        main_str = self.__class.name__ + "("
+        main_str = self.__class__.__name__ + "("
         if lines:
             # simple one-liner info, which most builtin Modules will use
             main_str += "\n  " + "\n  ".join(lines) + "\n"
