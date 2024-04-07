@@ -26,7 +26,7 @@ class Module:
 
     def modules(self) -> Sequence[Module]:
         "Return the direct child modules of this module."
-        m: Dict[str, Module] = self._dict_["_modules"]
+        m: Dict[str, Module] = self.__dict__["_modules"]
         return list(m.values())
 
     # def train(self) -> None:
@@ -88,23 +88,23 @@ class Module:
             Newly created parameter.
         """
         val = Parameter(v, k)
-        self._dict_["_parameters"][k] = val
+        self.__dict__["_parameters"][k] = val
         return val
 
     def _setattr_(self, key: str, val: Parameter) -> None:
         if isinstance(val, Parameter):
             self._dict_["_parameters"][key] = val
         elif isinstance(val, Module):
-            self._dict_["_modules"][key] = val
+            self.__dict__["_modules"][key] = val
         else:
-            super()._setattr_(key, val)
+            super().__setattr__(key, val)
 
-    def _getattr_(self, key: str) -> Any:
-        if key in self._dict_["_parameters"]:
-            return self._dict_["_parameters"][key]
+    def __getattr__(self, key: str) -> Any:
+        if key in self.__dict__["_parameters"]:
+            return self.__dict__["_parameters"][key]
 
-        if key in self._dict_["_modules"]:
-            return self._dict_["_modules"][key]
+        if key in self.__dict__["_modules"]:
+            return self.__dict__["_modules"][key]
         return None
 
     def _call_(self, *args: Any, **kwargs: Any) -> Any:
@@ -129,7 +129,7 @@ class Module:
             child_lines.append("(" + key + "): " + mod_str)
         lines = child_lines
 
-        main_str = self._class.name_ + "("
+        main_str = self.__class.name__ + "("
         if lines:
             # simple one-liner info, which most builtin Modules will use
             main_str += "\n  " + "\n  ".join(lines) + "\n"
@@ -146,7 +146,7 @@ class Parameter:
     any value for testing.
     """
 
-    def _init_(self, x: Any, name: Optional[str] = None) -> None:
+    def __init__(self, x: Any, name: Optional[str] = None) -> None:
         self.value = x
         self.name = name
         if hasattr(x, "requires_grad_"):
@@ -162,8 +162,8 @@ class Parameter:
             if self.name:
                 self.value.name = self.name
 
-    def _repr_(self) -> str:
+    def __repr__(self) -> str:
         return repr(self.value)
 
-    def _str_(self) -> str:
+    def __str__(self) -> str:
         return str(self.value)
