@@ -107,11 +107,11 @@ class Module:
             return self.__dict__["_modules"][key]
         return None
 
-    def _call_(self, *args: Any, **kwargs: Any) -> Any:
+    def __call__(self, *args: Any, **kwargs: Any) -> Any:
         return self.forward(*args, **kwargs)
 
-    def _repr_(self) -> str:
-        def _addindent(s: str, numSpaces: int) -> str:
+    def __repr__(self) -> str:
+        def _addindent(s_: str, numSpaces: int) -> str:
             s2 = s_.split("\n")
             if len(s2) == 1:
                 return s_
