@@ -25,8 +25,8 @@ class ModuleA1(minitorch.Module):
 
 
 class ModuleA2(minitorch.Module):
-    def _init_(self) -> None:
-        super()._init_()
+    def __init__(self) -> None:
+        super().__init__()
         self.p2 = minitorch.Parameter(10)
 
 
@@ -167,7 +167,7 @@ def test_module_forward() -> None:
 
 
 class MockParam:
-    def _init_(self) -> None:
+    def __init__(self) -> None:
         self.x = False
 
     def requires_grad_(self, x: bool) -> None:
