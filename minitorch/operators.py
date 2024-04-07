@@ -1,6 +1,3 @@
-"""
-Collection of the core mathematical operators used throughout the code base.
-"""
 import math
 from typing import Callable, Iterable
 
@@ -91,4 +88,3 @@ def sum(ls: Iterable[float]) -> float:
 
 def prod(ls: Iterable[float]) -> float:
     return reduce(mul, 1.0)(ls)
-
