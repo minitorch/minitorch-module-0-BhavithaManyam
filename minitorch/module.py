@@ -93,7 +93,7 @@ class Module:
 
     def _setattr_(self, key: str, val: Parameter) -> None:
         if isinstance(val, Parameter):
-            self._dict_["_parameters"][key] = val
+            self.__dict__["_parameters"][key] = val
         elif isinstance(val, Module):
             self.__dict__["_modules"][key] = val
         else:
