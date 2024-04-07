@@ -166,4 +166,4 @@ class Parameter:
         return repr(self.value)
 
     def _str_(self) -> str:
-        return str(self.value
+        return str(self.value)
