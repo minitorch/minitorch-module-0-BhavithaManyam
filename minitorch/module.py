@@ -19,7 +19,7 @@ class Module:
     _parameters: Dict[str, Parameter]
     training: bool
 
-    def _init_(self) -> None:
+    def __init__(self) -> None:
         self._modules = {}
         self._parameters = {}
         self.training = True
@@ -30,12 +30,12 @@ class Module:
         return list(m.values())
 
     # def train(self) -> None:
-    #     "Set the mode of this module and all descendent modules to train."
+    #     "Set the mode of this module and all descendent modules to `train`."
     #     # TODO: Implement for Task 0.4.
     #     raise NotImplementedError("Need to implement for Task 0.4")
 
     # def eval(self) -> None:
-    #     "Set the mode of this module and all descendent modules to eval."
+    #     "Set the mode of this module and all descendent modules to `eval`."
     #     # TODO: Implement for Task 0.4.
     #     raise NotImplementedError("Need to implement for Task 0.4")
     def train(self) -> None:
@@ -54,7 +54,7 @@ class Module:
 
 
     #     Returns:
-    #         The name and Parameter of each ancestor parameter.
+    #         The name and `Parameter` of each ancestor parameter.
     #     """
     #     # TODO: Implement for Task 0.4.
     #     raise NotImplementedError("Need to implement for Task 0.4")
@@ -91,7 +91,7 @@ class Module:
         self.__dict__["_parameters"][k] = val
         return val
 
-    def _setattr_(self, key: str, val: Parameter) -> None:
+    def __setattr__(self, key: str, val: Parameter) -> None:
         if isinstance(val, Parameter):
             self.__dict__["_parameters"][key] = val
         elif isinstance(val, Module):
@@ -140,9 +140,9 @@ class Module:
 
 class Parameter:
     """
-    A Parameter is a special container stored in a :class:Module.
+    A Parameter is a special container stored in a :class:`Module`.
 
-    It is designed to hold a :class:Variable, but we allow it to hold
+    It is designed to hold a :class:`Variable`, but we allow it to hold
     any value for testing.
     """
 
